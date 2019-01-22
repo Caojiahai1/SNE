@@ -1,0 +1,97 @@
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:context="http://www.springframework.org/schema/context"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <display-name>Spring MVC Application</display-name>
+
+  <!-- Servlet Context Listener ======================================= -->
+
+  <!--
+    - Declare Spring context listener which sets up the Spring Application Context
+    - containing all Cocoon components (and user defined beans as well).
+    -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--
+    - Declare Spring request listener which sets up the required RequestAttributes
+    - to support Springs and Cocoon custom bean scopes like the request scope or the
+    - session scope.
+    -->
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+
+  <!-- 配置springMVC前端控制器(即访问的统一入口) -->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器等等）
+         如果不配置，默认加载的事/WEB-INF/servlet名称-servlet.xml -->
+    <!--<init-param>-->
+      <!--<param-name>contextConfigLocation</param-name>-->
+      <!--<param-value>classpath:springmvc.xml</param-value>-->
+    <!--</init-param>-->
+  </servlet>
+
+  <servlet-mapping>
+    <!--
+     常用两种配置方式
+     第一种：*.action，访问以.action结尾的，由DispatcherServlet解析
+     第二种：/,所有访问的地址都由DispacherServlet进行解析，对于静态文件的解析需要配置不让DispacherServlet进
+ 行解析，
+     使用此种方式可以实现RESTful风格的url
+      -->
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <!-- Servlet Filters ================================================ -->
+
+  <!--
+    - Declare a filter for multipart MIME handling
+    -->
+  <!--<filter>-->
+    <!--<description>Multipart MIME handling filter for Cocoon</description>-->
+    <!--<display-name>Cocoon multipart filter</display-name>-->
+    <!--<filter-name>CocoonMultipartFilter</filter-name>-->
+    <!--<filter-class>org.apache.cocoon.servlet.multipart.MultipartFilter</filter-class>-->
+  <!--</filter>-->
+
+  <!--
+    - Declare a filter for debugging incoming request
+    -->
+  <!--<filter>-->
+    <!--<description>Log debug information about each request</description>-->
+    <!--<display-name>Cocoon debug filter</display-name>-->
+    <!--<filter-name>CocoonDebugFilter</filter-name>-->
+    <!--<filter-class>org.apache.cocoon.servlet.DebugFilter</filter-class>-->
+  <!--</filter>-->
+
+  <!-- Filter mappings ================================================ -->
+
+  <!--
+    - Use the Cocoon multipart filter together with the Cocoon demo webapp
+    -->
+  <!--<filter-mapping>-->
+    <!--<filter-name>CocoonMultipartFilter</filter-name>-->
+    <!--<servlet-name>Cocoon</servlet-name>-->
+  <!--</filter-mapping>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>CocoonMultipartFilter</filter-name>-->
+    <!--<servlet-name>DispatcherServlet</servlet-name>-->
+  <!--</filter-mapping>-->
+
+  <!--
+    - Use the Cocoon debug filter together with the Cocoon demo webapp
+  <filter-mapping>
+    <filter-name>CocoonDebugFilter</filter-name>
+    <servlet-name>Cocoon</servlet-name>
+  </filter-mapping>
+    -->
+
+
+
+</web-app>

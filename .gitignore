@@ -1,0 +1,4 @@
+/.idea
+*.iml
+/web/target/web-1.0-SNAPSHOT/WEB-INF/lib/*.jar
+*/target/*
