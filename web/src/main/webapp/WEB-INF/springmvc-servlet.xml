@@ -16,4 +16,40 @@
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
+    <!--开启注解-->
+    <context:annotation-config/>
+
+    <!--类型转换器-->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters register-defaults="true">
+            <!--<ref bean="jsonHttpMessageConverter"></ref>-->
+            <ref bean="stringHttpMessageConverter"></ref>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.sne.converter.StringToDateConverter">
+                    <property name="datePattern" value="yyyy-MM-dd"></property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <!--处理返回String类型response时编码-->
+    <bean id="stringHttpMessageConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
 </beans>

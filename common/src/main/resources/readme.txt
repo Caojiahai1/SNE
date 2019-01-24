@@ -4,3 +4,4 @@ day 1
         spring.version : 4.0.0.RELEASE
 
 day 2
+    配置视图解析器，类型转换器，全局异常处理
