@@ -5,3 +5,7 @@ day 1
 
 day 2
     配置视图解析器，类型转换器，全局异常处理
+
+day 3
+    配置mybatis，数据库，Json类型转换:com.alibaba.fastjson
+

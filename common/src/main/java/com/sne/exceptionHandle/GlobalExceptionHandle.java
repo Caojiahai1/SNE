@@ -5,7 +5,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * @author Yan liang
@@ -15,15 +14,25 @@ import java.io.IOException;
 public class GlobalExceptionHandle implements HandlerExceptionResolver {
 
     @Override
-    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
-//        httpServletResponse.setStatus(500);
-//        httpServletResponse.setContentType("application/json;charset=utf-8");
-//        try {
-//            httpServletResponse.getWriter().write(e.getMessage());
-//            httpServletResponse.getWriter().flush();
-//        } catch (IOException e1) {
-//
-//        }
-        return new ModelAndView("error");
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) {
+        //如果是json格式的ajax请求
+        if (request.getHeader("accept").indexOf("application/json") > -1
+                || (request.getHeader("X-Requested-With")!= null && request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1)) {
+            response.setStatus(500);
+            response.setContentType("application/json;charset=utf-8");
+            try {
+                response.getWriter().write("业务异常");
+                response.getWriter().flush();
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+
+            }
+            return new ModelAndView();
+        }
+        else{//如果是普通请求
+            System.out.println(e.getMessage());
+            request.setAttribute("exceptionMessage", e.getMessage());
+            return new ModelAndView("error");
+        }
     }
 }

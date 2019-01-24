@@ -61,7 +61,8 @@
         <c3p0.version>0.9.1.2</c3p0.version>
         <!--<slf4j.version>1.7.5</slf4j.version>-->
         <log4j.version>1.2.17</log4j.version>
-        <mysql.verion>5.1.22</mysql.verion>
+        <mysql.version>5.1.22</mysql.version>
+        <fastjson.version>1.2.28</fastjson.version>
         <!--<shiro.version>1.2.2</shiro.version>-->
         <!--<quartz.version>1.8.6</quartz.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -163,7 +164,13 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.verion}</version>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
         <!--dependency>
       <groupId>SNE</groupId>
