@@ -2,6 +2,8 @@ package com.sne.web.controller;
 
 import com.sne.service.baseIndoServices.UserService;
 import com.sne.utils.CallResult;
+import com.sne.utils.MyLogger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ public class TestController {
 
     @RequestMapping("/hello")
     public String hello () {
+        MyLogger.logger.error("hello");
         return "index";
     }
 

@@ -172,6 +172,12 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
         <!--dependency>
       <groupId>SNE</groupId>
       <artifactId>[the artifact id of the block to be mounted]</artifactId>
