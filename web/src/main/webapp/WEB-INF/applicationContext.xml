@@ -15,4 +15,5 @@
     <bean id="globalExceptionHandle" class="com.sne.exceptionHandle.GlobalExceptionHandle"></bean>
 
     <import resource="classpath*:spring/spring-mybatis.xml"/>
+    <import resource="classpath*:spring/spring-spymemcache.xml"/>
 </beans>

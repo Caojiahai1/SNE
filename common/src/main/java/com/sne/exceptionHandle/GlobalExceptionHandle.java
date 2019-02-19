@@ -1,6 +1,7 @@
 
 package com.sne.exceptionHandle;
 
+import com.sne.utils.MyLogger;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +32,7 @@ public class GlobalExceptionHandle implements HandlerExceptionResolver {
             return new ModelAndView();
         }
         else{//如果是普通请求
-            System.out.println(e.getMessage());
+            MyLogger.logger.error(e.getMessage());
             request.setAttribute("exceptionMessage", e.getMessage());
             return new ModelAndView("error");
         }

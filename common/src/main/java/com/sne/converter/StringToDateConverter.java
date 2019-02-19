@@ -1,5 +1,6 @@
 package com.sne.converter;
 
+import com.sne.utils.MyLogger;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,7 @@ public class StringToDateConverter implements Converter<String, Date>{
             Date d = sf.parse(s);
             return d;
         } catch (ParseException e) {
-            System.out.println(e.toString());
+            MyLogger.logger.error(e.getMessage());
         }
         return null;
     }

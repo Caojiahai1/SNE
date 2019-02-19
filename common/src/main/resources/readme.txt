@@ -11,3 +11,5 @@ day 3
 
     配置log4j日志
 
+    配置memcache缓存
+

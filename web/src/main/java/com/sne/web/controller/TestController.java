@@ -1,5 +1,6 @@
 package com.sne.web.controller;
 
+import com.sne.memcache.MySpyMemcache;
 import com.sne.service.baseIndoServices.UserService;
 import com.sne.utils.CallResult;
 import com.sne.utils.MyLogger;
@@ -22,6 +23,8 @@ public class TestController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private MySpyMemcache mySpyMemcache;
 
     @RequestMapping("/hello")
     public String hello () {
@@ -41,5 +44,43 @@ public class TestController {
     @ResponseBody
     public CallResult addUser () {
         return userService.add();
+    }
+
+    @RequestMapping(value = "/setcache")
+    @ResponseBody
+    public CallResult setcache () {
+        CallResult callResult = new CallResult();
+        try {
+            mySpyMemcache.set("111", 333);
+        } catch (Exception e) {
+            callResult.setMessage(e.getMessage());
+            callResult.setSuccess(false);
+            return callResult;
+        }
+        callResult.setSuccess(true);
+        callResult.setMessage("添加缓存成功！");
+        return callResult;
+    }
+
+    @RequestMapping(value = "/getcache")
+    @ResponseBody
+    public CallResult getcache () {
+        CallResult callResult = new CallResult();
+        try {
+            Object value = mySpyMemcache.get("111");
+            if (value == null) {
+                callResult.setMessage("key" + "111" + "不存在！");
+                callResult.setSuccess(false);
+                return callResult;
+            }
+            callResult.setObject(value);
+        } catch (Exception e) {
+            callResult.setMessage(e.getMessage());
+            callResult.setSuccess(false);
+            return callResult;
+        }
+        callResult.setMessage("获取缓存成功！");
+        callResult.setSuccess(true);
+        return callResult;
     }
 }

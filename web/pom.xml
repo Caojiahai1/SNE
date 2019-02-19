@@ -178,6 +178,12 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.11.4</version>
+        </dependency>
         <!--dependency>
       <groupId>SNE</groupId>
       <artifactId>[the artifact id of the block to be mounted]</artifactId>

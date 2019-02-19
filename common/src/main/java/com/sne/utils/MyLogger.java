@@ -8,5 +8,8 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  */
 public class MyLogger {
+    /**
+     * 默认路径
+     */
     public static Logger logger = Logger.getLogger(MyLogger.class);
 }
