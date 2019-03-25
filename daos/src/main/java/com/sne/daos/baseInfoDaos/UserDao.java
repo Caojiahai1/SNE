@@ -1,6 +1,7 @@
 package com.sne.daos.baseInfoDaos;
 
 import com.sne.entrys.basicInfo.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author Yan liang
@@ -9,4 +10,6 @@ import com.sne.entrys.basicInfo.User;
  */
 public interface UserDao {
     void Insert (User user);
+
+    User Get (@Param("RowId") long RowId);
 }

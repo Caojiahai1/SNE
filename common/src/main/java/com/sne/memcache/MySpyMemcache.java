@@ -29,17 +29,27 @@ public class MySpyMemcache implements DisposableBean {
         try {
             return (MemcachedClient) memcachedClientFactoryBean.getObject();
         } catch (Exception e) {
-            MyLogger.logger.error("连接memcached服务器异常：" + e.getMessage());
+            MyLogger.logger.error("获取memcachedClient异常：" + e.getMessage());
         }
         return null;
     }
 
     public OperationFuture<Boolean> set(String key, Object o) {
-        return get_client().set(key, 0, o);
+        try {
+            return get_client().set(key, 0, o);
+        } catch (Exception e) {
+            MyLogger.logger.error("设置缓存key：" + key + "异常" + e.getMessage());
+        }
+        return null;
     }
 
     public Object get(String key) {
-        return get_client().get(key);
+        try {
+            return get_client().get(key);
+        } catch (Exception e) {
+            MyLogger.logger.error("获取缓存key：" + key + "异常" + e.getMessage());
+        }
+        return null;
     }
 
     @Override

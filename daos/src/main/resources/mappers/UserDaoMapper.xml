@@ -12,4 +12,10 @@
           #{RowId},#{Name},#{Code},#{CreateDate},#{Creater}
         )
     </insert>
+
+    <select id="Get" resultType="User">
+        SELECT * FROM user WHERE RowId = #{RowId}
+    </select>
+
+
 </mapper>

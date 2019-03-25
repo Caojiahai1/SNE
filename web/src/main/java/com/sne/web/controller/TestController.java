@@ -1,5 +1,6 @@
 package com.sne.web.controller;
 
+import com.sne.entrys.basicInfo.User;
 import com.sne.memcache.MySpyMemcache;
 import com.sne.service.baseIndoServices.UserService;
 import com.sne.utils.CallResult;
@@ -44,6 +45,18 @@ public class TestController {
     @ResponseBody
     public CallResult addUser () {
         return userService.add();
+    }
+
+    @RequestMapping(value = "/getUser")
+    @ResponseBody
+    public User getUser () {
+        return userService.get();
+    }
+
+    @RequestMapping(value = "/static")
+    @ResponseBody
+    public String  getStatic () {
+        return UserService.get2();
     }
 
     @RequestMapping(value = "/setcache")

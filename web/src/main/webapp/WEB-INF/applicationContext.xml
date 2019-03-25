@@ -16,4 +16,5 @@
 
     <import resource="classpath*:spring/spring-mybatis.xml"/>
     <import resource="classpath*:spring/spring-spymemcache.xml"/>
+    <import resource="classpath*:spring/spring-aopInterceptor.xml"/>
 </beans>

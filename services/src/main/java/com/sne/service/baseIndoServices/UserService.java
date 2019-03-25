@@ -18,6 +18,10 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    public static String get2() {
+        return "2222";
+    }
+
     public CallResult add () {
         CallResult callResult = new CallResult();
 
@@ -32,5 +36,9 @@ public class UserService {
         callResult.setSuccess(true);
         callResult.setMessage("添加成功");
         return callResult;
+    }
+
+    public User get () {
+        return userDao.Get(123124342123L);
     }
 }
